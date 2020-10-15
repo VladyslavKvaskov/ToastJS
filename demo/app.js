@@ -23,7 +23,7 @@ function showToaster() {
     status: statusArr[getRndInteger(0, 5)],
     title: 'title',
     // text: textArr[getRndInteger(0, 3)],
-    html: '<div class="open">hi</div>',
+    html: '<div class="open"></div>',
     timing: getRndInteger(3000, 15000),
     position: positionArr[getRndInteger(0, 9)],
     cssClass: ['newtoast1', 'newtoast2'],

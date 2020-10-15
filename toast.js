@@ -1,9 +1,13 @@
-let toastId = 0;
+/**
+ * @file toast.js
+ * @license MIT
+ * @license_url https://github.com/VladyslavKvaskov/ToastJS/blob/main/LICENSE
+ * @copyright Vlad Kvaskov 2020
+ */
+
 class Toast extends HTMLElement {
   constructor() {
     super();
-    toastId++;
-    this.identity = toastId;
     this.onclose = null;
   }
 
@@ -12,6 +16,12 @@ class Toast extends HTMLElement {
       this.onclose();
     }
     this.classList.add('hide');
+    // const toastProgressBar = this.querySelector('.progress-bar');
+    //
+    // if (toastProgressBar) {
+    //   toastProgressBar.style.animationDuration = '0s';
+    // }
+
     setTimeout(() => {
       this.remove();
     }, 1500);
@@ -19,9 +29,8 @@ class Toast extends HTMLElement {
 
 
   onOutsideClick(callback) {
-    this.dataset.id = this.identity;
     document.addEventListener('click', (e) => {
-      if (!e.target.closest(`[data-id="${this.identity}"]`)) {
+      if (e.target.closest(`toast-message`) !== this) {
         callback();
       }
     });
@@ -276,6 +285,7 @@ const cssTxt = `
     justify-content: space-between;
     align-items: center;
     padding: 3px;
+    user-select: none;
   }
 
   toast-message .title-and-icon {
@@ -321,7 +331,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="top"].hide {
-    transform: translate(-50%, calc(-100% - var(--toast-outer-spacing)));
+    transform: translate(-50%, calc(-110% - var(--toast-outer-spacing)));
   }
 
   toast-message[data-position="left"] {
@@ -330,7 +340,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="left"].hide {
-    transform: translate(calc(-100% - var(--toast-outer-spacing)), -50%);
+    transform: translate(calc(-110% - var(--toast-outer-spacing)), -50%);
   }
 
   toast-message[data-position="right"] {
@@ -339,7 +349,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="right"].hide {
-    transform: translate(calc(100% + var(--toast-outer-spacing)), -50%);
+    transform: translate(calc(110% + var(--toast-outer-spacing)), -50%);
   }
 
   toast-message[data-position="bottom"] {
@@ -348,7 +358,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="bottom"].hide {
-    transform: translate(-50%, calc(100% + var(--toast-outer-spacing)));
+    transform: translate(-50%, calc(110% + var(--toast-outer-spacing)));
   }
 
   toast-message[data-position="top-left"] {
@@ -357,7 +367,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="top-left"].hide {
-    transform: translate(calc(-100% - var(--toast-outer-spacing)), calc(-100% - var(--toast-outer-spacing)));
+    transform: translate(calc(-110% - var(--toast-outer-spacing)), calc(-100% - var(--toast-outer-spacing)));
   }
 
   toast-message[data-position="top-right"] {
@@ -366,7 +376,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="top-right"].hide {
-    transform: translate(calc(100% + var(--toast-outer-spacing)), calc(-100% - var(--toast-outer-spacing)));
+    transform: translate(calc(110% + var(--toast-outer-spacing)), calc(-100% - var(--toast-outer-spacing)));
   }
 
   toast-message[data-position="bottom-left"] {
@@ -375,7 +385,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="bottom-left"].hide {
-    transform: translate(calc(-100% - var(--toast-outer-spacing)), calc(100% + var(--toast-outer-spacing)));
+    transform: translate(calc(-110% - var(--toast-outer-spacing)), calc(100% + var(--toast-outer-spacing)));
   }
 
   toast-message[data-position="bottom-right"] {
@@ -384,7 +394,7 @@ const cssTxt = `
   }
 
   toast-message[data-position="bottom-right"].hide {
-    transform: translate(calc(100% + var(--toast-outer-spacing)), calc(100% + var(--toast-outer-spacing)));
+    transform: translate(calc(110% + var(--toast-outer-spacing)), calc(100% + var(--toast-outer-spacing)));
   }
 
   toast-message[data-position="center"] {
@@ -468,7 +478,7 @@ const cssTxt = `
     visibility: visible;
   }
 
-  toast-message button {
+  toast-message .close-bttn {
     appearance: button;
     -moz-appearance: button;
     -webkit-appearance: button;
