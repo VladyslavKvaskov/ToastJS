@@ -75,7 +75,7 @@ class Toaster {
 
     toastMessage.innerHTML = `
       <div class="wrapper">
-        ${(this.title || this.titleIcon || this.showCloseButton) ? `
+        ${(this.title || this.titleIcon || this.showCloseBttn) ? `
             <div class="top-bar">
               <div class="title">
                 <div class="title-and-icon">
