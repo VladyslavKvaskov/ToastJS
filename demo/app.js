@@ -33,10 +33,10 @@ function showToaster() {
     closeOnOutsideClick: false,
     showCloseBttn: true,
     onOpen: (toastMessage) => {
-      toastMessage.querySelector('.open').innerText = 'open';
+      toastMessage.querySelector('.open').innerText = textArr[getRndInteger(0, 3)];
     },
     onClose: (toastMessage) => {
-      toastMessage.querySelector('.open').innerText = 'closed';
+      toastMessage.querySelector('.open').innerText = 'Goodbye!';
     }
   });
   setTimeout(() => {
