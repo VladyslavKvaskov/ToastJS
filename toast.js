@@ -9,22 +9,26 @@ class Toast extends HTMLElement {
   constructor() {
     super();
     this.onclose = null;
+    this.hideDuration = 500;
   }
 
   delete() {
     if (typeof this.onclose === 'function') {
       this.onclose();
     }
-    this.classList.add('hide');
+    this.style.transitionDuration = `${this.hideDuration / 1000}s`;
     // const toastProgressBar = this.querySelector('.progress-bar');
-    //
     // if (toastProgressBar) {
-    //   toastProgressBar.style.animationDuration = '0s';
+    //   toastProgressBar.style.animationDuration = `${(this.hideDuration - 2000) / 1000}s`;
     // }
+
+    this.classList.add('hide');
+
+
 
     setTimeout(() => {
       this.remove();
-    }, 1500);
+    }, 1000 + this.hideDuration);
   }
 
 
@@ -67,11 +71,18 @@ class Toaster {
       config.position === 'bottom-left' || config.position === 'bottom-right' ?
       config.position : 'top';
 
+    this.showDuration = (parseInt(config.showDuration)) ? config.showDuration : 500;
+    this.hideDuration = (parseInt(config.hideDuration)) ? config.hideDuration : 500;
+
     this.onOpen = (typeof config.onOpen === 'function') ? config.onOpen : '';
     this.onClose = (typeof config.onClose === 'function') ? config.onClose : '';
 
 
     const toastMessage = document.createElement('toast-message');
+
+    toastMessage.style.transitionDuration = `${this.showDuration / 1000}s`;
+
+    toastMessage.hideDuration = this.hideDuration;
 
     toastMessage.innerHTML = `
       <div class="wrapper">

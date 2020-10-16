@@ -21,9 +21,9 @@ function showToaster() {
   new Toaster({
     icon: 'success',
     status: statusArr[getRndInteger(0, 5)],
-    title: 'title',
+    title: 'ToastJS',
     // text: textArr[getRndInteger(0, 3)],
-    html: '<div class="open"></div>',
+    html: `<div class="open"></div>`,
     timing: getRndInteger(3000, 15000),
     position: positionArr[getRndInteger(0, 9)],
     cssClass: ['newtoast1', 'newtoast2'],
@@ -32,6 +32,8 @@ function showToaster() {
     interactive: false,
     closeOnOutsideClick: false,
     showCloseBttn: true,
+    showDuration: 500,
+    hideDuration: 700,
     onOpen: (toastMessage) => {
       toastMessage.querySelector('.open').innerText = textArr[getRndInteger(0, 3)];
     },
