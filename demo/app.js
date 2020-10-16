@@ -19,12 +19,13 @@ let positionArr = [
 
 function showToaster() {
   new Toaster({
-    icon: 'success',
     status: statusArr[getRndInteger(0, 5)],
     title: 'ToastJS',
     // text: textArr[getRndInteger(0, 3)],
     html: `<div class="open"></div>`,
     timing: getRndInteger(3000, 15000),
+    showDuration: 500,
+    hideDuration: 700,
     position: positionArr[getRndInteger(0, 9)],
     cssClass: ['newtoast1', 'newtoast2'],
     titleIcon: 'https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico',
@@ -32,8 +33,6 @@ function showToaster() {
     interactive: false,
     closeOnOutsideClick: false,
     showCloseBttn: true,
-    showDuration: 500,
-    hideDuration: 700,
     onOpen: (toastMessage) => {
       toastMessage.querySelector('.open').innerText = textArr[getRndInteger(0, 3)];
     },
