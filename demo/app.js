@@ -33,11 +33,52 @@ function showToaster() {
     showTimer: true,
     interactive: true,
     showCloseBttn: true,
+    showConfirmBttn: true,
+    showDenyBttn: true,
+    showCancelBttn: true,
+    confirmBttnText: 'Confirm',
+    denyBttnText: 'Deny',
+    cancelBttnText: 'Cancel',
+    confirmBttnClick: (toast) => {
+      new Toaster({
+        text: 'You\'ve confirmed the prompt',
+        timing: 5000,
+        showTimer: true,
+        status: 'info',
+        position: toastPosition,
+        closeOnOutsideClick: true
+      });
+
+      toast.delete();
+    },
+    denyBttnClick: (toast) => {
+      new Toaster({
+        text: 'You\'ve denied the prompt.',
+        timing: 5000,
+        showTimer: true,
+        status: 'error',
+        position: toastPosition,
+        closeOnOutsideClick: true
+      });
+
+      toast.delete();
+    },
+    cancelBttnClick: (toast) => {
+      new Toaster({
+        text: 'You\'ve cancelled the prompt.',
+        timing: 5000,
+        showTimer: true,
+        position: toastPosition,
+        closeOnOutsideClick: true
+      });
+
+      toast.delete();
+    },
     onOpen: (toast) => {
-      toast.querySelector('.open').innerText = textArr[getRndInteger(0, 3)];
+      toast.querySelector('.open').innerHTML = textArr[getRndInteger(0, 3)];
     },
     onClose: (toast) => {
-      toast.querySelector('.open').innerText = 'Goodbye!';
+      // toast.querySelector('.open').innerText = 'Goodbye!';
       showToaster();
     }
   });
