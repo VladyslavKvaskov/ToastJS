@@ -39,6 +39,7 @@ function showToaster() {
     confirmBttnText: 'Confirm',
     denyBttnText: 'Deny',
     cancelBttnText: 'Cancel',
+    draggable: true,
     confirmBttnClick: (toast) => {
       new Toaster({
         text: 'You\'ve confirmed the prompt',
