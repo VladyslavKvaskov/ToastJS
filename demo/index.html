@@ -6,16 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ToastJS Demo</title>
   <script src="../lib/toast.js"></script>
+  <style>
+    .demo-bttn {
+      border: none;
+      font-size: 30px;
+      background: #7d7d7d;
+      margin: 0;
+      padding: 5px;
+      outline: none;
+      display: inline-block;
+      font-family: sans-serif;
+      color: #fff;
+      margin: 5px;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .demo-bttn:nth-last-child(2) {
+      background: #ccc;
+      color: #000;
+    }
+
+    .demo-bttn:last-child {
+      background: #fff;
+      color: #000;
+    }
+
+    .cool-bttns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    toast-message {
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- <ripple-element data-ripple-target="toast-message">sfdfsg</ripple-element> -->
-  <ripple-element>ripple-element</ripple-element>
-  <button type="button" is="ripple-button">ripple-button</button>
-  <a href="#" is="ripple-anchor">ripple-anchor</a>
-  <span is="ripple-span">ripple-span</span>
-  <div is="ripple-div">ripple-div</div>
-  <label is="ripple-label">ripple-label</label>
+  <div class="cool-bttns">
+    <ripple-element href="#ripple-element" tabindex="0" class="demo-bttn">Test Ripple</ripple-element>
+    <button is="ripple-button" class="demo-bttn">Test Ripple</button>
+    <label tabindex="0" is="ripple-label" class="demo-bttn">Test Ripple</label>
+    <div tabindex="0" is="ripple-div" class="demo-bttn">Test Ripple</div>
+    <a href="#ripple-anchor" is="ripple-anchor" class="demo-bttn">Test Ripple</a>
+  </div>
   <script src="../demo/app.js"></script>
 </body>
 
