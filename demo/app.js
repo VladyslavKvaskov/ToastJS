@@ -19,7 +19,8 @@ const positionArr = [
 
 function showToaster() {
   const toastPosition = positionArr[getRndInteger(0, 9)];
-  new Toaster({
+  let toastElement = null;
+  toastElement = new Toaster({
     status: statusArr[getRndInteger(0, 5)],
     title: 'ToastJS',
     // text: textArr[getRndInteger(0, 3)],
@@ -82,7 +83,13 @@ function showToaster() {
       // toast.querySelector('.open').innerText = 'Goodbye!';
       showToaster();
     }
+  }).getToastElement();
+
+
+  toastElement.addEventListener('drag-toast', (e) => {
+    console.log('drag');
   });
+
 
   setTimeout(() => {
     // showToaster();
