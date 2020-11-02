@@ -80,11 +80,9 @@ function showToaster() {
       toast.querySelector('.open').innerHTML = textArr[getRndInteger(0, 3)];
     },
     onClose: (toast) => {
-      // toast.querySelector('.open').innerText = 'Goodbye!';
       showToaster();
     }
   }).getToastElement();
-
 
   toastElement.addEventListener('drag-toast', (e) => {
     console.log('drag');
