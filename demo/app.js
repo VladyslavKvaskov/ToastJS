@@ -79,9 +79,12 @@ function showToaster() {
     },
     onOpen: (toast) => {
       toast.querySelector('.open').innerHTML = textArr[getRndInteger(0, 3)];
+      toast.addEventListener('click', () => {
+        console.log(123);
+      });
     },
     onClose: (toast) => {
-      showToaster();
+      // showToaster();
     }
   }).getToastElement();
 
@@ -89,14 +92,14 @@ function showToaster() {
     console.log('drag');
   });
 
-
-  setTimeout(() => {
-    // showToaster();
-  }, getRndInteger(3000, 15000));
+  toastElement.addEventListener('remove', (e) => {
+    setTimeout(() => {
+      toastElement.restore();
+    }, 3000);
+  });
 }
 
 showToaster();
-// showToaster();
 
 
 function getRndInteger(min, max) {
